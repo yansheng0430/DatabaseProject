@@ -1,0 +1,41 @@
+﻿@model List<BookStore.Models.Book>
+@{
+    ViewBag.Title = "BooksList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Books List</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <td style="font-size:30px">ISBN</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Quantity</td>
+            <td>Author</td>
+            <td>Category</td>
+            <td>Publisher</td>
+            <td>Publish Date</td>
+            <td>Description</td>
+            <td>Cover</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+        <tr>
+            <td>@book.ISBN</td>
+            <td>@book.Name</td>
+            <td>@book.UnitPrice</td>
+            <td>@book.Quantity</td>
+            <td>@book.Author</td>
+            <td>@book.Category</td>
+            <td>@book.Publisher</td>
+            <td>@book.PublishDate.Date</td>
+            <td>@book.Description</td>
+            <td>@book.Cover</td>
+        </tr>
+        }
+    </tbody>
+
+</table>
