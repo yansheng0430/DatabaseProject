@@ -74,8 +74,14 @@ namespace TemplateTest.Controllers
             _authManager.SignOut();
             return RedirectToAction("Index", "Customer");
         }
-
-
+        /*
+        [Authorize]
+        public ActionResult MemberInformation()
+        {
+            _authManager.SignOut();
+            return View()
+        }
+        */
         [AllowAnonymous]
         public ActionResult AccountCreate()
         {

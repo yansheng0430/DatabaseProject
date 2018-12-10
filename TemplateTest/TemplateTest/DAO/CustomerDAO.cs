@@ -19,8 +19,7 @@ namespace TemplateTest.DAO
                 try
                 {
                     connection.Open();
-                    //string sqlString = "EXEC AuthenticateMember @Account @Password";
-                    string sqlString = "select * from CUSTOMER where Account = @Account AND Passward = @Password";
+                    string sqlString = "EXEC AuthenticateMember @Account, @Password";
                     SqlCommand command = new SqlCommand(sqlString, connection);
                     command.Parameters.Add(new SqlParameter("@Account", SqlDbType.NVarChar));
                     command.Parameters.Add(new SqlParameter("@Password", SqlDbType.NVarChar));

@@ -1,4 +1,6 @@
-﻿<head>
+﻿@using System.Web.Security
+
+<head>
     <title>Shoppers &mdash; Colorlib e-Commerce Template</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -41,7 +43,17 @@
                                     <span class="count">2</span>
                                 </a>
                             </li>
-                            <li><a href=@Url.Action("MemberSignIn","Customer")>Sign in</a>
+                            <li>
+                                @if (!User.Identity.IsAuthenticated)
+                                {
+                                    <a href=@Url.Action("MemberSignIn", "Customer")>Sign In</a>
+
+                                }
+                                else
+                                {
+                                    <a href=@Url.Action("MemberSignOut", "Customer")>Sign Out</a>
+                                }
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -56,7 +68,17 @@
                 <li> <a href=@Url.Action("About", "Customer")>About</a></li>
                 <li><a href=@Url.Action("Shop", "Customer")>Shop</a></li>
                 <li><a href=@Url.Action("Recommand", "Customer")>Recommand</a></li>
-                <li>@Html.ActionLink("SignOut", "MemberSignOut")</li>
+                <li>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <a>訪客</a>
+                    }
+                    else
+                    {
+
+                       <a href=@Url.Action("MemberInformation", "Customer")>@User.Identity.Name</a>
+                    }
+                </li>
             </ul>
         </div>
     </nav>

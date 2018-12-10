@@ -148,20 +148,21 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAO\BooksDAO.cs" />
     <Compile Include="DAO\CategoriesDAO.cs" />
+    <Compile Include="DAO\IntrestingDAO.cs" />
     <Compile Include="DAO\PublishersDAO.cs" />
+    <Compile Include="DAO\ShoppingCartDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AuthenticationUser.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\BookManaged.cs" />
+    <Compile Include="Models\BookShopped.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Intresting.cs" />
     <Compile Include="Models\Publisher.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\UserManager.cs" />
+    <Compile Include="Models\ShoppingCartBook.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -13,27 +13,32 @@ namespace TemplateTest.Models
         public string CustomerID{ get; set; }
 
         [Required]
+        [StringLength(20)]
         public string FirstName { get; set; }
 
         [Required]
+        [StringLength(20)]
         public string LastName { get; set; }
 
-        [Required]
         public bool Sex { get; set; }
 
         [Required]
+        [StringLength(10)]
+        [Phone]
         public string CellPhone { get; set; }
 
-        [Required]
+        
         public string Address { get; set; }
 
-        [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required]
+        [StringLength(50)]
         public string Account { get; set; }
 
         [Required]
+        [StringLength(50)]
         public string Password { get; set; }
     }
 }

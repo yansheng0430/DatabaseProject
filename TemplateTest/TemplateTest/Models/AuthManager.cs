@@ -19,7 +19,7 @@ namespace TemplateTest.Models
             {
                 FormsAuthenticationTicket ticket = new FormsAuthenticationTicket
                 (1,
-                authCustomer.FirstName,
+                authCustomer.CustomerID,
                 DateTime.Now,
                 DateTime.Now.AddHours(1),
                 false,
