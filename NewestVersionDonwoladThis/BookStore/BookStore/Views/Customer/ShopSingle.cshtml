@@ -1,0 +1,60 @@
+﻿@model List<BookStore.Models.Book>
+@{
+    ViewBag.Title = "ShopSingle";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+    <div class="bg-light py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-0"><a href=@Url.Action("Shop", "Customer")>Shop</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Product Name</strong></div>  <!--這裡放商品名稱-->
+            </div>
+        </div>
+    </div>
+
+    <div class="site-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <!--一樣資料庫圖片尚未加入-->
+                    <img src=@Model[0].Cover width="" alt="Image" class="img-fluid"/>
+                </div>
+                <div class="col-md-6">
+                    <h2 class="text-black">@Model[0].Name</h2>
+                    <p>@Model[0].Description</p>
+                    <p><strong class="text-primary h4">@Model[0].UnitPrice</strong></p>
+
+                    <div class="mb-5">
+                        <div class="input-group mb-3" style="max-width: 120px;">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                            </div>
+                            <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <!--假若最愛清單裡面已經存在要加入的商品則不會重複加入只會跳轉頁面-->
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <a href=@Url.Action("InterestedBookAdded", "Customer", new { customerID = User.Identity.Name, ISBN = @Model[0].ISBN}) class="btn btn-outline-primary btn-sm btn-block">INTERESTED</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href=@Url.Action("ShoppingCart", "Customer") class="btn btn-outline-primary btn-sm btn-block">ADD TO CART</a>
+                        </div>
+                    </div>
+                       
+
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</body>
+</html>
