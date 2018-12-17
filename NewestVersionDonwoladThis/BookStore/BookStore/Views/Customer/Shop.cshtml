@@ -33,7 +33,7 @@
                                             </a>
                                         </figure>
                                         <div class="block-4-text p-4">
-                                            <h3><a href=@Url.Action("ShopSingle", "Customer", new { ISBN = book.ISBN})></a></h3>
+                                            <h3><a href=@Url.Action("ShopSingle", "Customer", new { ISBN = book.ISBN})>@book.Name</a></h3>
                                             <p class="text-primary font-weight-bold">@book.UnitPrice</p>
                                         </div>
                                     </div>
@@ -48,7 +48,7 @@
                             @foreach(Category category in ViewBag.AllCategories)
                             {
                                 <ul class="list-unstyled mb-0">
-                                    <li class="mb-1"><a href="#" class="d-flex"><span>@category.CategoryID  @category.CType</span> <span class="text-black ml-auto">(@category.BooksAmount)</span></a></li>
+                                    <li class="mb-1"><a href=@Url.Action("ShopFilterCategory", "Customer", new { category = category.CType}) class="d-flex"><span>@category.CategoryID  @category.CType</span> <span class="text-black ml-auto">(@category.BooksAmount)</span></a></li>
                                 </ul>
                             }
                         </div>

@@ -50,7 +50,11 @@
                                                 <img src=@interestingBook.Cover alt="Image" class="img-fluid">
                                             </td>
                                             <td class="product-name">
-                                                <h2 class="h5 text-black">@interestingBook.Name</h2>
+                                                <h2 class="h5 text-black">
+                                                    <a href=@Url.Action("ShopSingle", "Customer", new { ISBN = interestingBook.ISBN})>
+                                                        @interestingBook.Name
+                                                    </a>
+                                                </h2>
                                             </td>
                                             <td class="product-name">
                                                 <h2 class="h5 text-black">@interestingBook.Price</h2>

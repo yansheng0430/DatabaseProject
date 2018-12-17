@@ -34,7 +34,7 @@
                             <div class="input-group-prepend">
                                 <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
                             </div>
-                            <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                            <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" />
                             <div class="input-group-append">
                                 <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
                             </div>
@@ -43,14 +43,12 @@
                     <div class="row mb-5">
                         <!--假若最愛清單裡面已經存在要加入的商品則不會重複加入只會跳轉頁面-->
                         <div class="col-md-6 mb-3 mb-md-0">
-                            <a href=@Url.Action("InterestedBookAdded", "Customer", new { customerID = User.Identity.Name, ISBN = @Model[0].ISBN}) class="btn btn-outline-primary btn-sm btn-block">INTERESTED</a>
+                            <a href=@Url.Action("InterestedBookAdded", "Customer", new { customerID = User.Identity.Name, ISBN = @Model[0].ISBN }) class="btn btn-outline-primary btn-sm btn-block">INTERESTED</a>
                         </div>
                         <div class="col-md-6">
-                            <a href=@Url.Action("ShoppingCart", "Customer") class="btn btn-outline-primary btn-sm btn-block">ADD TO CART</a>
+                            <a href=@Url.Action("ShoppingCartAdded", "Customer", new { customerID = User.Identity.Name, ISBN = @Model[0].ISBN, quantity = 1}) class="btn btn-outline-primary btn-sm btn-block">ADD TO CART</a>
                         </div>
                     </div>
-                       
-
                     </div>
                 </div>
         </div>

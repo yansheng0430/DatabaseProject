@@ -37,6 +37,17 @@ namespace BookStore.Controllers
         }
 
         [AllowAnonymous]
+        // Get: Shop
+        public ActionResult ShopFilterCategory(string category)
+        {
+            CategoriesDAO categoriesDAO = new CategoriesDAO();
+            BooksDAO booksDAO = new BooksDAO();
+            ViewBag.AllCategories = categoriesDAO.GetAllCategories();
+            ViewBag.AllBooks = booksDAO.GetBooksByCategoryFilter(category);
+            return View("Shop");
+        }
+
+        [AllowAnonymous]
         //Get: About
         public ActionResult About()
         {
@@ -65,7 +76,7 @@ namespace BookStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_authManager.SignIn(authCustomer))
+                if (_authManager.SignIn(authCustomer, "Customer"))
                     return RedirectToAction("Index", "Customer");
                 else
                     return View(authCustomer);
@@ -119,16 +130,68 @@ namespace BookStore.Controllers
 
         [Authorize]
         //Get:ShoppingCart
-        public ActionResult ShoppingCart()
+        public ActionResult ShoppingCart(string customerID)
         {
-            return View();
+            ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
+            List<BookShopped> shoppingCartList = shoppingCartDAO.GetShoppingCartByCustomerID(customerID);
+            int total = 0;
+            foreach (BookShopped bs in shoppingCartList)
+            {
+                total += bs.Subtotal;
+            }
+            ViewBag.BooksTotal = total;
+            return View(shoppingCartList);
+        }
+
+        [Authorize]
+        //Get:ShoppingCart
+        public ActionResult ShoppingCartAdded(string customerID, string ISBN, int quantity)
+        {
+            ShoppingCartBook shoppingBook = new ShoppingCartBook();
+            ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
+            shoppingBook.CustomerID = customerID;
+            shoppingBook.ISBN = ISBN;
+            shoppingBook.Amount = quantity;
+            shoppingCartDAO.AddShoppingCartBook(shoppingBook);
+            return RedirectToAction("ShoppingCart", new { customerID = customerID });
+        }
+
+        [Authorize]
+        //Get:ShoppingCart
+        public ActionResult ShoppingCartDeleted(string customerID, string ISBN)
+        {
+            ShoppingCartBook shoppingBook = new ShoppingCartBook();
+            ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
+            shoppingBook.CustomerID = customerID;
+            shoppingBook.ISBN = ISBN;
+            shoppingCartDAO.DeleteShoppingCart(customerID, ISBN);
+            return RedirectToAction("ShoppingCart", new { customerID = customerID });
         }
 
         [Authorize]
         //Get:Checkout
-        public ActionResult Checkout()
+        public ActionResult Checkout(string customerID)
         {
+            ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
+            List<BookShopped> shoppingCartList = shoppingCartDAO.GetShoppingCartByCustomerID(customerID);
+            int total = 0;
+            foreach (BookShopped bs in shoppingCartList)
+            {
+                total += bs.Subtotal;
+            }
+            ViewBag.ShoppingCartList = shoppingCartList;
+            ViewBag.BooksTotal = total;
             return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        //Get:Checkout
+        public ActionResult Checkout(Order newOrder)
+        {
+            OrdersDAO ordersDAO = new OrdersDAO();
+            ordersDAO.CreateNewOrder(newOrder);
+            return RedirectToAction("Thank");
         }
 
         [Authorize]

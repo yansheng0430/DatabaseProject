@@ -10,7 +10,15 @@ namespace BookStore.Models
 {
     public class AuthManager
     {
-        public bool SignIn(AuthMember authMember)
+        public bool SignIn(AuthMember authMember, string type)
+        {
+            bool isExist = false;
+            if (type == "Customer")
+                isExist = CustomerSignIn(authMember);
+            return isExist;
+        }
+
+        private bool CustomerSignIn(AuthMember authMember)
         {
             CustomerDAO customerDAO = new CustomerDAO();
             Customer authCustomer = customerDAO.GetCustomerByAuthentication(authMember);

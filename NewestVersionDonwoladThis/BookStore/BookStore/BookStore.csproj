@@ -149,6 +149,7 @@
     <Compile Include="DAO\CategoriesDAO.cs" />
     <Compile Include="DAO\CustomerDAO.cs" />
     <Compile Include="DAO\InterestingDAO.cs" />
+    <Compile Include="DAO\OrdersDAO.cs" />
     <Compile Include="DAO\PublishersDAO.cs" />
     <Compile Include="DAO\ShoppingCartDAO.cs" />
     <Compile Include="Global.asax.cs">
@@ -162,6 +163,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Interesting.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Publisher.cs" />
     <Compile Include="Models\ShoppingCartBook.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />

@@ -44,7 +44,7 @@
                             <li><a href="#"><span class="icon icon-person"></span></a></li>
                             <li><a href=@Url.Action("Interested", "Customer", new { customerID = User.Identity.Name})><span class="icon icon-heart-o"></span></a></li>
                             <li>
-                                <a href=@Url.Action("ShoppingCart", "Customer") class="site-cart">
+                                <a href=@Url.Action("ShoppingCart", "Customer", new { customerID = User.Identity.Name}) class="site-cart">
                                     <span class="icon icon-shopping_cart"></span>
                                     <!--購物車內種類數量，超過3位數顯示會被蓋掉-->
                                     <span class="count">2</span>

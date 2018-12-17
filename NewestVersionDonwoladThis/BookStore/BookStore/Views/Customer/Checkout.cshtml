@@ -1,4 +1,5 @@
-﻿
+﻿@using BookStore.Models
+@model BookStore.Models.Order
 @{
     ViewBag.Title = "Checkout";
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
@@ -21,63 +22,61 @@
                 <div class="row">
                     <div class="col-md-6 mb-5 mb-md-0">
                         <h2 class="h3 mb-3 text-black">Billing Details</h2>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
                         <div class="p-3 p-lg-5 border">
-                            <div class="form-group">
-                                <label for="c_country" class="text-black">Country <span class="text-danger">*</span></label>
-                                <select id="c_country" class="form-control">
-                                    <option value="1">Select a country</option>
-                                    <option value="2">bangladesh</option>
-                                    <option value="3">Algeria</option>
-                                    <option value="4">Afghanistan</option>
-                                    <option value="5">Ghana</option>
-                                    <option value="6">Albania</option>
-                                    <option value="7">Bahrain</option>
-                                    <option value="8">Colombia</option>
-                                    <option value="9">Dominican Republic</option>
-                                </select>
-                            </div>
                             <div class="form-group row">
                                 <div class="col-md-6">
-                                    <label for="c_fname" class="text-black">First Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="c_fname" name="c_fname">
+                                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "text-black" })
+                                    <span class="text-danger">*</span>
+                                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="c_lname" class="text-black">Last Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="c_lname" name="c_lname">
+                                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "text-black" })
+                                    <span class="text-danger">*</span>
+                                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <label for="c_address" class="text-black">Address <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="c_address" name="c_address" placeholder="Street address">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <label for="c_state_country" class="text-black">State / Country <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="c_state_country" name="c_state_country">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="c_postal_zip" class="text-black">Posta / Zip <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="c_postal_zip" name="c_postal_zip">
+                                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "text-black" })
+                                    <span class="text-danger">*</span>
+                                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="form-group row mb-5">
                                 <div class="col-md-6">
-                                    <label for="c_email_address" class="text-black">Email Address <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="c_email_address" name="c_email_address">
+                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "text-black" })
+                                    <span class="text-danger">*</span>
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="c_phone" class="text-black">Phone <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="c_phone" name="c_phone" placeholder="Phone Number">
+                                    @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "text-black" })
+                                    <span class="text-danger">*</span>
+                                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    @Html.LabelFor(model => model.CreditCard, htmlAttributes: new { @class = "text-black" })
+                                    <span class="text-danger">*</span>
+                                    @Html.EditorFor(model => model.CreditCard, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.CreditCard, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="c_order_notes" class="text-black">Order Notes</label>
-                                <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="Write your notes here..."></textarea>
+                                <input type="submit" value="Place Order" class="btn btn-primary btn-lg py-3 btn-block" onclick="location.href = @Url.Action("Thank", "Customer")" />
                             </div>
                         </div>
+                        }
                     </div>
+                    
                     <div class="col-md-6">
                         <div class="row mb-5">
                             <div class="col-md-12">
@@ -92,23 +91,19 @@
                                         </thead>
                                         <tbody>
                                             <!--購買商品資訊-->
-                                            @for (int i = 1; i < 5; i++)
+                                            @foreach (BookShopped bookShopped in ViewBag.ShoppingCartList)
                                             {
                                                 <tr>
-                                                    <td>Name <strong class="mx-2">x</strong> Quantity</td>
-                                                    <td>Pirce</td>
+                                                    <td> @bookShopped.Name<strong class="mx-2">x</strong> @bookShopped.Amount</td>
+                                                    <td>@bookShopped.Subtotal</td>
                                                 </tr>
-                                            }
+                                                }
                                             <tr>
                                                 <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-                                                <td class="text-black font-weight-bold"><strong>Total</strong></td>
+                                                <td class="text-black font-weight-bold"><strong>@ViewBag.BooksTotal</strong></td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                   
-                                    <div class="form-group">
-                                        <button class="btn btn-primary btn-lg py-3 btn-block" onclick="window.location='thankyou.html'">Place Order</button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
