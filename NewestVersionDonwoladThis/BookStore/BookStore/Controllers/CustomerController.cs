@@ -170,17 +170,19 @@ namespace BookStore.Controllers
 
         [Authorize]
         //Get:Checkout
-        public ActionResult Checkout(string customerID)
+        public ActionResult Checkout(string customerID, int total)
         {
-            ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
-            List<BookShopped> shoppingCartList = shoppingCartDAO.GetShoppingCartByCustomerID(customerID);
-            int total = 0;
-            foreach (BookShopped bs in shoppingCartList)
+            if (total > 0)
             {
-                total += bs.Subtotal;
+                ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
+                List<BookShopped> shoppingCartList = shoppingCartDAO.GetShoppingCartByCustomerID(customerID);
+                ViewBag.ShoppingCartList = shoppingCartList;
+                ViewBag.BooksTotal = total;
             }
-            ViewBag.ShoppingCartList = shoppingCartList;
-            ViewBag.BooksTotal = total;
+            else
+            {
+                return RedirectToAction("ShoppingCart", "Customer", new { customerID });
+            }
             return View();
         }
 

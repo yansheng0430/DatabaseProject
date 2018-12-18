@@ -102,7 +102,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <p><a href=@Url.Action("Checkout", "Customer", new { customerID = User.Identity.Name }) class="buy-now btn btn-sm btn-primary">Proceed To Checkout</a></p>
+                                        <p><a href=@Url.Action("Checkout", "Customer", new { customerID = User.Identity.Name, total = ViewBag.BooksTotal }) class="buy-now btn btn-sm btn-primary">Proceed To Checkout</a></p>
                                     </div>
                                 </div>
                             </div>
