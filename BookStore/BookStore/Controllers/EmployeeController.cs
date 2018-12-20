@@ -33,6 +33,13 @@ namespace BookStore.Controllers
             return View(booksList);
         }
 
+        public ActionResult ProductDelete(string ISBN)
+        {
+            BooksDAO booksDAO = new BooksDAO();
+            booksDAO.DeleteBook(ISBN);
+            return RedirectToAction("ProductList", "Employee");
+        }
+
         [Authorize]
         // GET: Employee
         public ActionResult EmployeeAccount()

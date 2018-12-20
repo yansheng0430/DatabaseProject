@@ -25,11 +25,11 @@
         </thead>
         <tbody>
             @foreach (Book book in Model)
-            {<a class="btn-default" style="color:black"> <</a>>
+            {
             <tr>
                 <td>
-                    @Html.ActionLink("Edit", "EditBook", "Employee", new { ISBN = book.ISBN }, new { @class = "btn btn-default "})
-                    @Html.ActionLink("Delete", "DeleteBook", "Employee", new { ISBN = book.ISBN }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Edit", "ProductEdit", "Employee", new { ISBN = book.ISBN }, new { @class = "btn btn-default"})
+                    @Html.ActionLink("Delete", "ProductDelete", "Employee", new { ISBN = book.ISBN }, new { @class = "btn btn-default" })
                 </td>
                 <td>
                     <img src=@book.Cover>
