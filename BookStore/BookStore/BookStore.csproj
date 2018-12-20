@@ -191,7 +191,7 @@
     <Content Include="Views\Customer\Interested.cshtml" />
     <Content Include="Views\Customer\Thank.cshtml" />
     <Content Include="Views\Customer\AccountCreate.cshtml" />
-    <Content Include="Views\Customer\MemberInformation.cshtml" />
+    <Content Include="Views\Customer\CustomerInfo.cshtml" />
     <Content Include="Views\Shared\_EmployeeLayout.cshtml" />
     <Content Include="Views\Employee\ProductList.cshtml" />
     <Content Include="Views\Employee\ProductManage.cshtml" />
@@ -206,7 +206,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\Book\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

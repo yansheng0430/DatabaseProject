@@ -28,8 +28,9 @@
             {
             <tr>
                 <td>
-                    @Html.ActionLink("Edit", "ProductEdit", "Employee", new { ISBN = book.ISBN }, new { @class = "btn btn-default"})
-                    @Html.ActionLink("Delete", "ProductDelete", "Employee", new { ISBN = book.ISBN }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Edit", "ProductEdit", "Employee", new { ISBN = book.ISBN })
+                    @Html.ActionLink("Delete", "ProductDelete", "Employee", new { ISBN = book.ISBN })
+                    @Html.ActionLink("Manage", "ProductManage", "Employee", new { ISBN = book.ISBN})
                 </td>
                 <td>
                     <img src=@book.Cover>

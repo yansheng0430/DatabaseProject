@@ -49,11 +49,10 @@ namespace BookStore.Controllers
         }
 
         [Authorize]
-        public ActionResult CustomerSignOut()
+        public ActionResult MemberSignOut()
         {
             _authManager.SignOut();
-            return RedirectToAction("Index", "Customer");
+            return RedirectToAction("MemberSignIn", "Authentication");
         }
-
     }
 }

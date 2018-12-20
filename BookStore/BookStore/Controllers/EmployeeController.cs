@@ -19,9 +19,24 @@ namespace BookStore.Controllers
 
         [Authorize]
         // GET: Employee
+        public ActionResult ProductEdit()
+        {
+            return View();
+        }
+
+        [Authorize]
+        // GET: Employee
+        public ActionResult ProductDelete()
+        {
+            return View();
+        }
+
+        [Authorize]
+        // GET: Employee
         public ActionResult ProductManage()
         {
             return View();
+
         }
 
         [Authorize]
@@ -31,13 +46,6 @@ namespace BookStore.Controllers
             BooksDAO bookDAO = new BooksDAO();
             List<Book> booksList = bookDAO.GetAllBooks();
             return View(booksList);
-        }
-
-        public ActionResult ProductDelete(string ISBN)
-        {
-            BooksDAO booksDAO = new BooksDAO();
-            booksDAO.DeleteBook(ISBN);
-            return RedirectToAction("ProductList", "Employee");
         }
 
         [Authorize]

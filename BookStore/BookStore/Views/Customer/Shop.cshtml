@@ -29,12 +29,12 @@
                                             <!--要注意Book.Cover放入的圖片實際資料庫還沒有圖片-->
                                             <!--圖片-->
                                             <a href=@Url.Action("ShopSingle", "Customer", new { ISBN = book.ISBN })>
-                                                <img src =@book.Cover  alt="Product Image" class="img-fluid" />
+                                                <img src="@book.Cover" alt="Product Image" class="img-fluid" />
                                             </a>
                                         </figure>
                                         <div class="block-4-text p-4">
-                                            <h3><a href=@Url.Action("ShopSingle", "Customer", new { ISBN = book.ISBN})>@book.Name</a></h3>
-                                            <p class="text-primary font-weight-bold">@book.UnitPrice</p>
+                                            <h><a href=@Url.Action("ShopSingle", "Customer", new { ISBN = book.ISBN})>@book.Name</a></h>
+                                            <div class="text-primary font-weight-bold">$ @book.UnitPrice</div>
                                         </div>
                                     </div>
                                 </div>

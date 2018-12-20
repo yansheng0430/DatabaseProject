@@ -44,25 +44,18 @@
                                                 <img src=@bookShopped.Cover alt="Image" class="img-fluid">
                                             </td>
                                             <td class="product-name">
-                                                <h2 class="h5 text-black">
+                                                <h class="text-black" style="font-size:smaller">
                                                     <a href=@Url.Action("ShopSingle", "Customer", new { ISBN = bookShopped.ISBN})>
                                                         @bookShopped.Name
                                                     </a>
-                                                </h2>
+                                                </h>
                                             </td>
                                             <td>@bookShopped.UnitPrice</td>
                                             <td>
                                                 <!--加減商品數量-->
-                                                <div class="input-group mb-3" style="max-width: 120px;">
-                                                    <div class="input-group-prepend">
-                                                        <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                                                    </div>
-                                                    <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                                                    </div>
+                                                <div class="input-group mb-3 " style="max-width: 80px;">
+                                                    <input type="text" class="form-control text-center" value="1" placeholder="@bookShopped.Amount" aria-label="Example text with button addon" aria-describedby="button-addon1">
                                                 </div>
-
                                             </td>
                                             <td>@bookShopped.Subtotal</td>
                                             <td><a href=@Url.Action("ShoppingCartDeleted", "Customer", new { customerID = bookShopped.CustomerID, ISBN = bookShopped.ISBN}) class="btn btn-primary btn-sm">X</a></td>

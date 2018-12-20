@@ -58,7 +58,7 @@ namespace BookStore.Controllers
 
         [Authorize]
         //Get:MemberInformation
-        public ActionResult MemberInformation()
+        public ActionResult CustomerInfo()
         {
             return View();
         }

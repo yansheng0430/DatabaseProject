@@ -33,12 +33,12 @@
                             <li>
                                 @if (!User.Identity.IsAuthenticated)
                                 {
-                                    <a href=@Url.Action("MemberSignIn", "Customer")>Sign In</a>
+                                    <a href=@Url.Action("MemberSignIn", "Authentication")>Sign In</a>
 
                                 }
                                 else
                                 {
-                                    <a href=@Url.Action("MemberSignOut", "Customer")>Sign Out</a>
+                                    <a href=@Url.Action("MemberSignOut", "Authentication")>Sign Out</a>
                                 }
                             </li>
                         </ul>
@@ -52,7 +52,6 @@
             <ul class="site-menu js-clone-nav d-none d-md-block">
                 <li><a href=@Url.Action("ProductList", "Employee")>Product List</a></li>
                 <li> <a href=@Url.Action("ProductCreate", "Employee")>Create Product</a></li>
-                <li><a href=@Url.Action("ProductManage", "Employee")>Manage Product</a></li>
                 <li>
                     @if (!User.Identity.IsAuthenticated)
                     {
