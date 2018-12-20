@@ -1,0 +1,50 @@
+﻿@model BookStore.Models.AuthMember
+@{
+    ViewBag.Title = "MemberSignIn";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+<body>
+    <h2 style="text-align:center">Sign In</h2>
+
+    <!--錯誤時警告訊息尚未加上去，我用hrml的方法寫，using html.beingForm類似輔助工具實際上他產生下面的東西-->
+    <div class="container">
+        <!--另一種寫法-->
+        <form class="form-horizontal" method="post" action=@Url.Action("MemberSignIn","Authentication")>
+            <div class="form-group row justify-content-center">
+                <div class=" col-md-5" style="text-align:end">
+                    @Html.LabelFor(model => model.Account, htmlAttributes: new { @class = "col-md-2 control-label" })
+                </div>
+                <div class="col-md">
+                    @Html.TextBoxFor(model => model.Account, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row justify-content-lg-center">
+                <div class=" col-md-5" style="text-align:end">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "col-md-2 control-label" })
+                </div>
+                <div class="col-md-7" style="text-align:initial">
+                    @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row justify-content-lg-center">
+
+                <div class="col-md" style="text-align:center">
+                    @Html.RadioButtonFor(model => model.Identity, "Customer") Customer
+                    @Html.RadioButtonFor(model => model.Identity, "Employee") Employee
+                    @Html.ValidationMessageFor(model => model.Identity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row justify-content-center">
+                <div class="col-mb-10">
+                    <input type="submit" class="btn btn-default" value="Sign in" />
+                </div>
+            </div>
+
+        </form>
+        <span class=" row justify-content-center">
+            <a href=@Url.Action("AccountCreate", "Customer")>Create new Customer Account</a>
+        </span>
+    </div>
+</body>

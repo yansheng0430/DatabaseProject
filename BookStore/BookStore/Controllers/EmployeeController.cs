@@ -8,45 +8,37 @@ using BookStore.Models;
 
 namespace BookStore.Controllers
 {
-    [Authorize]
     public class EmployeeController : Controller
     {
-        // GET: EmployeeHome
-        public ActionResult EmployeeHome()
+        [Authorize]
+        // GET: Employee
+        public ActionResult ProductCreate()
         {
             return View();
         }
 
-        //GET: BookList
-        public ActionResult BooksList()
-        {
-            BooksDAO bookDB = new BooksDAO();
-            List<Book> AllBooks = bookDB.GetAllBooks();
-            return View(AllBooks);
-        }
-
-        //GET: CreateBooks
-        public ActionResult CreateBooks()
+        [Authorize]
+        // GET: Employee
+        public ActionResult ProductManage()
         {
             return View();
         }
 
-        //POST: CreateBooks
-        [HttpPost]
-        public ActionResult CreateBooks(Book newBook)
+        [Authorize]
+        // GET: Employee
+        public ActionResult ProductList()
         {
-            if (ModelState.IsValid)
-            {
-                BooksDAO booksDB = new BooksDAO();
-                booksDB.CreateBook(newBook);
-                TempData["CreateResult"] = String.Format("NewBook {0} was Added Successfully", newBook.Name);
-                return RedirectToAction("CreateBooks");
-            }
-            else
-            {
-                TempData["CreateResult"] = String.Format("NewBook {0} was Added Unsuccessfully", newBook.Name);
-                return View(newBook);
-            }
+            BooksDAO bookDAO = new BooksDAO();
+            List<Book> booksList = bookDAO.GetAllBooks();
+            return View(booksList);
         }
+
+        [Authorize]
+        // GET: Employee
+        public ActionResult EmployeeAccount()
+        {
+            return View();
+        }
+        
     }
 }

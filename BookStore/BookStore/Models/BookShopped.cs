@@ -7,6 +7,7 @@ namespace BookStore.Models
 {
     public class BookShopped
     {
+        public string CustomerID { get; set; }
         public string ISBN { get; set; }
         public string Name { get; set; }
         public int UnitPrice { get; set; }

@@ -1,0 +1,49 @@
+﻿@using BookStore.Models
+@model List<BookStore.Models.Book>
+@{
+    ViewBag.Title = "ProductList";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+}
+
+<h2 style="text-align:center">ProductList</h2>
+
+<body>
+    <table class=" table">
+        <thead>
+            <tr>
+                <td></td>
+                <td>Cover</td>
+                <td>ISBN</td>
+                <td>Name</td>
+                <td>Price</td>
+                <td>Quantity</td>
+                <td>Author</td>
+                <td>Category</td>
+                <td>Publisher</td>
+                <td>Publish Date</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Book book in Model)
+            {<a class="btn-default" style="color:black"> <</a>>
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "EditBook", "Employee", new { ISBN = book.ISBN }, new { @class = "btn btn-default "})
+                    @Html.ActionLink("Delete", "DeleteBook", "Employee", new { ISBN = book.ISBN }, new { @class = "btn btn-default" })
+                </td>
+                <td>
+                    <img src=@book.Cover>
+                </td>
+                <td>@book.ISBN</td>
+                <td>@book.Name</td>
+                <td>@book.UnitPrice</td>
+                <td>@book.Quantity</td>
+                <td>@book.Author</td>
+                <td>@book.Category</td>
+                <td>@book.Publisher</td>
+                <td>@book.PublishDate</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</body>

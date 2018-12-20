@@ -96,6 +96,7 @@ namespace BookStore.DAO
             List<Book> booksList = new List<Book>();
             using (SqlConnection connection = new SqlConnection())
             {
+                connection.ConnectionString = WebConfigurationManager.ConnectionStrings["BookStoreDB"].ConnectionString;
                 try
                 {
                     connection.Open();
@@ -135,6 +136,7 @@ namespace BookStore.DAO
             List<Book> booksList = new List<Book>();
             using (SqlConnection connection = new SqlConnection())
             {
+                connection.ConnectionString = WebConfigurationManager.ConnectionStrings["BookStoreDB"].ConnectionString;
                 try
                 {
                     connection.Open();
@@ -174,6 +176,8 @@ namespace BookStore.DAO
             List<Book> booksList = new List<Book>();
             using (SqlConnection connection = new SqlConnection())
             {
+                connection.ConnectionString = WebConfigurationManager.ConnectionStrings["BookStoreDB"].ConnectionString;
+
                 try
                 {
                     connection.Open();
@@ -213,6 +217,7 @@ namespace BookStore.DAO
             List<Book> booksList = new List<Book>();
             using (SqlConnection connection = new SqlConnection())
             {
+                connection.ConnectionString = WebConfigurationManager.ConnectionStrings["BookStoreDB"].ConnectionString;
                 try
                 {
                     connection.Open();
@@ -252,6 +257,8 @@ namespace BookStore.DAO
             List<Book> booksList = new List<Book>();
             using (SqlConnection connection = new SqlConnection())
             {
+                connection.ConnectionString = WebConfigurationManager.ConnectionStrings["BookStoreDB"].ConnectionString;
+
                 try
                 {
                     connection.Open();

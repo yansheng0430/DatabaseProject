@@ -27,7 +27,7 @@ namespace BookStore.DAO
                     command.Parameters.Add(new SqlParameter("@Amount", SqlDbType.Int));
                     command.Parameters["@CustomerID"].Value = shoppingBook.CustomerID;
                     command.Parameters["@ISBN"].Value = shoppingBook.ISBN;
-                    command.Parameters["Amount"].Value = shoppingBook.Amount;
+                    command.Parameters["@Amount"].Value = shoppingBook.Amount;
                     command.ExecuteNonQuery();
                     connection.Close();
                 }
@@ -66,7 +66,7 @@ namespace BookStore.DAO
         }
         
         //清空購物車的所有東西
-        public void ClearShoppingCart(string customerID)
+        public void DeleteShoppingCart(string customerID, string ISBN)
         {
             using (SqlConnection connection = new SqlConnection())
             {
@@ -74,10 +74,12 @@ namespace BookStore.DAO
                 try
                 {
                     connection.Open();
-                    string sqlString = "EXEC ClearShoppingCart @CustomerID";
+                    string sqlString = "EXEC DeleteShoppingCart @CustomerID, @ISBN";
                     SqlCommand command = new SqlCommand(sqlString, connection);
                     command.Parameters.Add(new SqlParameter("@CustomerID", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@ISBN", SqlDbType.NVarChar));
                     command.Parameters["@CustomerID"].Value = customerID;
+                    command.Parameters["@ISBN"].Value = ISBN;
                     command.ExecuteNonQuery();
                     connection.Close();
                 }
@@ -119,9 +121,8 @@ namespace BookStore.DAO
             }
         }
 
-        /* 購物車跟網頁互動有些問題
         //獲得購物車內所有的商品資訊和小計
-        public List<BookShopped> GetShoppingCart(string customerID)
+        public List<BookShopped> GetShoppingCartByCustomerID(string customerID)
         {
             List<BookShopped> bookShoppedList = new List<BookShopped>();
             using (SqlConnection connection = new SqlConnection())
@@ -130,7 +131,7 @@ namespace BookStore.DAO
                 try
                 {
                     connection.Open();
-                    string sqlString = "EXEC GetShoppingCart @CustomerID";
+                    string sqlString = "EXEC GetShoppingCartByCustomerID @CustomerID";
                     SqlCommand command = new SqlCommand(sqlString, connection);
                     command.Parameters.Add(new SqlParameter("@CustomerID", SqlDbType.NVarChar));
                     command.Parameters["@CustomerID"].Value = customerID;
@@ -138,11 +139,12 @@ namespace BookStore.DAO
                     while (reader.Read())
                     {
                         BookShopped bookShopped = new BookShopped();
-                        bookShopped.ISBN = reader.GetString(0);
-                        bookShopped.Name = reader.GetName(1);
-                        bookShopped.UnitPrice = reader.GetInt32(2);
-                        bookShopped.Amount = reader.GetInt32(3);
-                        bookShopped.Cover = reader.GetString(4);
+                        bookShopped.CustomerID = reader.GetString(0);
+                        bookShopped.ISBN = reader.GetString(1);
+                        bookShopped.Name = reader.GetString(2);
+                        bookShopped.UnitPrice = reader.GetInt32(3);
+                        bookShopped.Amount = reader.GetInt32(4);
+                        bookShopped.Cover = reader.GetString(5);
                         bookShoppedList.Add(bookShopped);
                     }
                     reader.Close();
@@ -153,6 +155,6 @@ namespace BookStore.DAO
                     throw ex;
                 }
             }
-        }*/
+        }
     }
 }
