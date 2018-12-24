@@ -18,22 +18,22 @@
             <div class="container">
                 <div class="row mb-5">
                     <div class="col-md-9 order-2">
-                        <div class="row mb-5">
+                        <div class="row mb-4">
                             <!--產生12個商品清單-->
                             <!--然後這些分頁我弄不起來現在頂多只能產生長到不行的商品列可能要想辦法解決-->
                             @foreach (Book book in ViewBag.AllBooks)
                             {<!--一個商品格子-->
-                                <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                                    <div class="block-4 text-center border">
-                                        <figure class="block-4-image">
+                                <div class="col-sm-6 col-lg-4 col-mb-4" data-aos="fade-up">
+                                    <div class="block-4 text-center border" style="height:400px">
+                                        <figure class="block-4-image" style="padding:5px">
                                             <!--要注意Book.Cover放入的圖片實際資料庫還沒有圖片-->
                                             <!--圖片-->
                                             <a href=@Url.Action("ShopSingle", "Customer", new { ISBN = book.ISBN })>
-                                                <img src="@book.Cover" alt="Product Image" class="img-fluid" />
+                                                <img tyle="vertical-align:central" src="@book.Cover" alt="Product Image" class="img-fluid" />
                                             </a>
                                         </figure>
                                         <div class="block-4-text p-4">
-                                            <h><a href=@Url.Action("ShopSingle", "Customer", new { ISBN = book.ISBN})>@book.Name</a></h>
+                                            <h><a style="text-align:center;font-size:small"href=@Url.Action("ShopSingle", "Customer", new { ISBN = book.ISBN})>@book.Name</a></h>
                                             <div class="text-primary font-weight-bold">$ @book.UnitPrice</div>
                                         </div>
                                     </div>
@@ -53,15 +53,20 @@
                             }
                         </div>
                         <div class="border p-4 rounded mb-4">
-                            <form method="post" action="@Url.Action("Shop","Customer")">
+                            @using (Html.BeginForm("ShopFilterPrice", "Customer", FormMethod.Post))
+                            {
                                 <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
-                                Min Price
-                                <input type="text" id="lowPrice" class="mr-2 mt-1" placeholder="0">
-                                Max Price
-                                <input type="text" id="highPrice" class="mr-2 mt-1" placeholder="0">
+                                <div class="col-md-1">
+                                    <label>Min</label>
+                                    <input type="text" name="lowPrice" class="mr-2 mt-1" placeholder="0"/>
+                                </div>
+                                <div class="col-md-1">
+                                    <label>Max</label>
+                                    <input type="text" name="highPrice" class="mr-2 mt-1" placeholder="0"/>
+                                </div>
                                 <br />
-                                <input type="submit" class="btn-block mt-1" style="width:80px" value="Submit" />
-                            </form>
+                                <input type="submit" class="btn-block mt-1" style="width:80px" value="Search" />
+                            }
                         </div>
                     </div>
                 </div>

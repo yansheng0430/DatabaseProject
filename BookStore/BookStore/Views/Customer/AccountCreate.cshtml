@@ -52,7 +52,7 @@
                 @Html.LabelFor(model => model.Sex, htmlAttributes: new { @class = "" })
             </div>
             <div class="col-md-3" style="text-align:initial">
-                @Html.RadioButtonFor(model => model.Sex, false)Male
+                @Html.RadioButtonFor(model => model.Sex, false, new { @checked = "checked"})Male
                 @Html.RadioButtonFor(model => model.Sex, true)Female
                 @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
             </div>

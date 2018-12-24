@@ -144,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Authentication\FormValueCondition.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
@@ -195,8 +196,9 @@
     <Content Include="Views\Shared\_EmployeeLayout.cshtml" />
     <Content Include="Views\Employee\ProductList.cshtml" />
     <Content Include="Views\Employee\ProductManage.cshtml" />
-    <Content Include="Views\Employee\EmployeeAccount.cshtml" />
+    <Content Include="Views\Employee\EmployeeInfo.cshtml" />
     <Content Include="Views\Employee\ProductCreate.cshtml" />
+    <Content Include="Views\Employee\ProductEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

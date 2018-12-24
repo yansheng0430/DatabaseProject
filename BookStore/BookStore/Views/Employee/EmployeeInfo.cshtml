@@ -1,17 +1,24 @@
-﻿@model BookStore.Models.Customer
+﻿@model BookStore.Models.Employee
 @{
-    ViewBag.Title = "CustomerInfo";
-    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+    ViewBag.Title = "EmployeeInfo";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
 }
 <body>
-
     <div class="container">
-
         @using (Html.BeginForm())
         {
-            <h2 style="text-align:center"> Customer Information</h2>
+            <h2 style="text-align:center"> Employee Information</h2>
             <h2 style="text-align:center"> @TempData["CommandMessage"]</h2>
             <div class="form-horizontal">
+                <div class="form-group row justify-content-center">
+                    <div class=" col-md-1" style="text-align:end">
+                        @Html.LabelFor(model => model.EmployeeID, htmlAttributes: new { @class = "" })
+                    </div>
+                    <div class="col-md-3" style="text-align:initial">
+                        @Html.TextBoxFor(model => model.EmployeeID, new { @readonly = "true" })
+                        @Html.ValidationMessageFor(model => model.EmployeeID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
                 <div class="form-group row justify-content-center">
                     <div class=" col-md-1" style="text-align:end">
                         @Html.LabelFor(model => model.Account, htmlAttributes: new { @class = "" })
@@ -26,8 +33,17 @@
                         @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "" })
                     </div>
                     <div class="col-md-3" style="text-align:initial">
-                        @Html.TextBoxFor(model => model.Password, new { htmlAttributes = new { @readonly = "" } })
+                        @Html.TextBoxFor(model => model.Password)
                         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center">
+                    <div class=" col-md-1" style="text-align:end">
+                        @Html.LabelFor(model => model.Office, htmlAttributes: new { @class = "" })
+                    </div>
+                    <div class="col-md-3" style="text-align:initial">
+                        @Html.TextBoxFor(model => model.Office)
+                        @Html.ValidationMessageFor(model => model.Office, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group row justify-content-center">
@@ -46,16 +62,6 @@
                     <div class="col-md-3" style="text-align:initial">
                         @Html.TextBoxFor(model => model.LastName, new { htmlAttributes = new { @class = "" } })
                         @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group row justify-content-center">
-                    <div class=" col-md-1" style="text-align:end">
-                        @Html.LabelFor(model => model.Sex, htmlAttributes: new { @class = "" })
-                    </div>
-                    <div class="col-md-3" style="text-align:initial">
-                        @Html.RadioButtonFor(model => model.Sex, false, new { @disabled = "disabled" }) Male
-                        @Html.RadioButtonFor(model => model.Sex, true, new { @disabled = "disabled" }) Female
-                        @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group row justify-content-center">
@@ -93,7 +99,7 @@
             </div>
         }
         <div class=" col justify-content-md-center" style="text-align:center">
-            @Html.ActionLink("Home", "Index")
+            @Html.ActionLink("Back To List", "ProductList", "Employee")
         </div>
     </div>
 </body>

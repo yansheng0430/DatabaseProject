@@ -4,47 +4,50 @@
     ViewBag.Title = "ProductList";
     Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
 }
-
-<h2 style="text-align:center">ProductList</h2>
-
 <body>
-    <table class=" table">
-        <thead>
-            <tr>
-                <td></td>
-                <td>Cover</td>
-                <td>ISBN</td>
-                <td>Name</td>
-                <td>Price</td>
-                <td>Quantity</td>
-                <td>Author</td>
-                <td>Category</td>
-                <td>Publisher</td>
-                <td>Publish Date</td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (Book book in Model)
-            {
-            <tr>
-                <td>
-                    @Html.ActionLink("Edit", "ProductEdit", "Employee", new { ISBN = book.ISBN })
-                    @Html.ActionLink("Delete", "ProductDelete", "Employee", new { ISBN = book.ISBN })
-                    @Html.ActionLink("Manage", "ProductManage", "Employee", new { ISBN = book.ISBN})
-                </td>
-                <td>
-                    <img src=@book.Cover>
-                </td>
-                <td>@book.ISBN</td>
-                <td>@book.Name</td>
-                <td>@book.UnitPrice</td>
-                <td>@book.Quantity</td>
-                <td>@book.Author</td>
-                <td>@book.Category</td>
-                <td>@book.Publisher</td>
-                <td>@book.PublishDate</td>
-            </tr>
-            }
-        </tbody>
-    </table>
+    <div class="container" style="border:2px #808080 groove;padding:50px">
+        <h2 style="text-align:center">ProductList</h2>
+        <h2 style="text-align:center">@TempData["ErrorMessage"]</h2>
+        <table class=" table">
+            <thead>
+                <tr>
+                    <td></td>
+                    <td style="text-align:center">Cover</td>
+                    <td style="text-align:center">ISBN</td>
+                    <td style="text-align:center">Name</td>
+                    <td style="text-align:center">Price</td>
+                    <td style="text-align:center">Quantity</td>
+                    <td style="text-align:center">Author</td>
+                    <td style="text-align:center">Category</td>
+                    <td style="text-align:center">Publisher</td>
+                    <td style="text-align:center">Publish Date</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Book book in Model)
+                {
+                    <tr>
+                        <td>
+                            <a class="btn btn-danger" style="font-size:10px;color:black; width:100px;height:20px" href=@Url.Action("ProductEdit", "Employee", new { ISBN = book.ISBN})>Edit</a>
+                            <p></p>
+                            <a class="btn btn-danger" style="font-size:10px;color:black; width:100px;height:20px" href=@Url.Action("ProductDelete", "Employee", new { ISBN = book.ISBN})>Delete</a>
+                            <p></p>
+                            <a class="btn btn-danger" style="font-size:10px;color:black; width:100px;height:20px" href=@Url.Action("ProductManage", "Employee", new { employeeID = User.Identity.Name, ISBN = book.ISBN})>Manage</a>
+                        </td>
+                        <td>
+                            <img src=@book.Cover style="width:100px;height:100px">
+                        </td>
+                        <td style="text-align:center">@book.ISBN</td>
+                        <td style="text-align:center">@book.Name</td>
+                        <td style="text-align:center">@book.UnitPrice</td>
+                        <td style="text-align:center">@book.Quantity</td>
+                        <td style="text-align:center">@book.Author</td>
+                        <td style="text-align:center">@book.Category</td>
+                        <td style="text-align:center">@book.Publisher</td>
+                        <td style="text-align:center">@book.PublishDate</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </body>

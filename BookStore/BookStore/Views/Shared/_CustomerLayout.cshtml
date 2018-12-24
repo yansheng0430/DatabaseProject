@@ -21,16 +21,23 @@
             <div class="row align-items-center">
                 <div class="col-6 col-md-4 order-2 order-md-1 ">
                     <!--search-->
-                    <form action=@Url.Action("Shop","Customer") class="site-block-top-search" style="width:200px" method="post">
-                        <select id="selector" class="form-control">
-                            <option value="Book">Book </option>
-                            <option value="Author">Author </option>
-                            <option value="Publisher">Publisher </option>
-                            <option value="ISBN">ISBN</option>
-                        </select>
+                    @using (Html.BeginForm("ShopSearchByKey", "Customer", FormMethod.Post))
+                    {
+                        <div class=" col-md-5" style="text-align:end">
+                            <select id="selector" class="form-control" name="bookKeySelector">
+                                <option value="Book">Book </option>
+                                <option value="Author">Author </option>
+                                <option value="Publisher">Publisher </option>
+                                <option value="ISBN">ISBN</option>
+                            </select>
+                        </div>
+                        <br>
+                        <div class="col-md-10" style="text-align:initial">
+                            <input type="text" name="searchKeyText">
+                            <input type="submit" value="Search" class="btn btn-default" style="height:35px; width: 70px"/>
+                        </div>
+                    }
 
-                        <input type="text" class="form-control border-0" placeholder="Search">
-                    </form>
                 </div>
                 <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
                     <div class="site-logo">
@@ -41,7 +48,7 @@
                 <div class="col-6 col-md-4 order-3 order-md-3 text-right">
                     <div class="site-top-icons">
                         <ul>
-                            <li><a href="#"><span class="icon icon-person"></span></a></li>
+                            <li><a href=@Url.Action("CustomerInfo","Customer", new { customerID = User.Identity.Name})><span class="icon icon-person"></span></a></li>
                             <li><a href=@Url.Action("Interested", "Customer", new { customerID = User.Identity.Name})><span class="icon icon-heart-o"></span></a></li>
                             <li>
                                 <a href=@Url.Action("ShoppingCart", "Customer", new { customerID = User.Identity.Name}) class="site-cart">

@@ -52,6 +52,80 @@ namespace BookStore.DAO
             }
         }
 
+        public Customer GetCustomerByCustomerID(string customerID)
+        {
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = WebConfigurationManager.ConnectionStrings["BookStoreDB"].ConnectionString;
+                try
+                {
+                    connection.Open();
+                    string sqlString = "EXEC GetCustomerByCustomerID @CustomerID";
+                    SqlCommand command = new SqlCommand(sqlString, connection);
+                    command.Parameters.Add(new SqlParameter("@CustomerID", SqlDbType.NVarChar));
+                    command.Parameters["@CustomerID"].Value = customerID;
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        Customer customer = new Customer();
+                        customer.CustomerID = reader.GetString(0);
+                        customer.FirstName = reader.GetString(1);
+                        customer.LastName = reader.GetString(2);
+                        customer.Sex = reader.GetBoolean(3);
+                        customer.CellPhone = reader.GetString(4);
+                        customer.Address = reader.GetString(5);
+                        customer.Email = reader.GetString(6);
+                        customer.Account = reader.GetString(7);
+                        customer.Password = reader.GetString(8);
+                        reader.Close();
+                        return customer;
+                    }
+                    reader.Close();
+                    return null;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+
+            }
+        }
+
+        public void SaveCustomerInformation(Customer customer)
+        {
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = WebConfigurationManager.ConnectionStrings["BookStoreDB"].ConnectionString;
+                try
+                {
+                    connection.Open();
+                    string sqlString = "EXEC SaveCustomerInformation @CustomerID, @FirstName, @LastName, @CellPhone, @Address, @Email, @Password";
+                    SqlCommand command = new SqlCommand(sqlString, connection);
+                    command.Parameters.Add(new SqlParameter("@CustomerID", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@FirstName", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@LastName", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@CellPhone", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@Address", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@Email", SqlDbType.NVarChar));
+                    command.Parameters.Add(new SqlParameter("@Password", SqlDbType.NVarChar));
+                    command.Parameters["@CustomerID"].Value = customer.CustomerID;
+                    command.Parameters["@FirstName"].Value = customer.FirstName;
+                    command.Parameters["@LastName"].Value = customer.LastName;
+                    command.Parameters["@CellPhone"].Value = customer.CellPhone;
+                    command.Parameters["@Address"].Value = customer.Address;
+                    command.Parameters["@Email"].Value = customer.Email;
+                    command.Parameters["@Password"].Value = customer.Password;
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+
+            }
+        }
+
         public bool CheckCustomerAccountExits(string account)
         {
             using (SqlConnection connection = new SqlConnection())

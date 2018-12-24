@@ -11,14 +11,17 @@ namespace BookStore.Models
             public string EmployeeID { get; set; }
 
             [Required]
+            [Display(Name = "First Name")]
             [StringLength(20)]
             public string FirstName { get; set; }
 
             [Required]
+            [Display(Name = "Last Name")]
             [StringLength(20)]
             public string LastName { get; set; }
 
             [Required]
+            [Display(Name = "Cell Phone")]
             [StringLength(10)]
             [Phone]
             public string CellPhone { get; set; }
@@ -42,5 +45,8 @@ namespace BookStore.Models
 
             [Required]
             public string Office { get; set; }
+
+            public string Roles { get; set; }
+
     }
 }

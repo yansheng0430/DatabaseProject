@@ -1,8 +1,60 @@
-﻿
+﻿@model BookStore.Models.BookManaged
 @{
     ViewBag.Title = "ProductManage";
     Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
 }
-
-<h2>ProductManage</h2>
+<body>
+    <h2 style="text-align:center">Manage</h2>
+    @using (Html.BeginForm())
+    {
+    <div class="container">
+        <br />
+        <div class="row align-content-center">
+            <div class="col-md-4 offset-md-2">
+                <img src=@Model.Cover alt="Product Image" class="img-fluid" />
+            </div>
+            <div class="col-md-5">
+                <div class="row" style="font-size:25px">
+                    Name: @Model.Name
+                </div>
+                <br>
+                <div class="row" style="font-size:25px">
+                    ISBN: @Model.ISBN
+                </div>
+                <br>
+                <div class="row" style="font-size:25px">
+                    Stock Quantity: @Model.Quantity
+                </div>
+                <br>
+                <div class="row">
+                    @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "" })
+                    &nbsp;&nbsp;
+                    @Html.TextBoxFor(model => model.Quantity, new { htmlAttributes = new { @class = "" }})
+                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                    <!--
+    <div style="font-size:25px;text-align:left">Quantity: </div>
+    <div class="col-md-6">
+        <input type="text" name="quantity" value="0" />
+    </div>
+        -->
+                </div>
+                <br>
+                <div class="row">
+                    @Html.RadioButtonFor(model => model.ActionState, "Increase", new { @checked = "checked"}) INCREASE
+                    @Html.RadioButtonFor(model => model.ActionState, "Decrease") DECREASE
+                    @Html.ValidationMessageFor(model => model.ActionState, "", new { @class = "text-danger" })
+                </div>
+                <br>
+                <div class="row">
+                    <input type="submit" value="Commit" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+        <br>
+        <div style="text-align:center">
+            @Html.ActionLink("Back to List", "ProductList")
+        </div>
+    </div>
+    }
+</body>
 

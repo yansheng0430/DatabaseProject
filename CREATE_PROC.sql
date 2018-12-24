@@ -82,7 +82,7 @@ BEGIN
 
 	RETURN @CType
 END
-
+GO
 
 CREATE FUNCTION GetPublisherNameMapID (@Publisher NVARCHAR(20))
 RETURNS NVARCHAR(6)
@@ -242,6 +242,13 @@ AS
 	COMMIT
 GO
 
+CREATE PROC GetCustomerByCustomerID @CustomerID NVARCHAR(10)
+AS 
+	BEGIN TRAN
+		SELECT * FROM CUSTOMER WHERE CustomerID = @CustomerID
+	COMMIT
+GO
+
 CREATE PROC CreateCustomer @FirstName NVARCHAR(20), @LastName NVARCHAR(20), @Sex BIT,
 			@CellPhone NVARCHAR(10), @CAddress NVARCHAR(50), @Email NVARCHAR(50),
 			@Account NVARCHAR(50), @Password NVARCHAR(50)
@@ -281,6 +288,18 @@ AS
 	WHERE Account = @Account
 GO
 
+
+CREATE PROC SaveCustomerInformation @CustomerID NVARCHAR(10), @FirstName NVARCHAR(20), @LastName NVARCHAR(20), 
+									@CellPhone NVARCHAR(10), @Address NVARCHAR(50), @Email NVARCHAR(50), 
+									@Password NVARCHAR(50)
+AS 
+	BEGIN TRAN
+		UPDATE CUSTOMER SET FirstName = @FirstName, LastName = @LastName, Cellphone = @CellPhone, 
+							CAddress = @Address, Email = @Email, Passward = @Password
+						WHERE CustomerID = @CustomerID
+	COMMIT
+GO
+
 --³o¸Ì¬°Employee PROC
 ---------------------------------------------------------------------------------------
 
@@ -288,6 +307,25 @@ CREATE PROC AuthenticateEmployee @Account NVARCHAR(50), @Password NVARCHAR(50)
 AS 
 	BEGIN TRAN
 		SELECT * FROM EMPLOYEE WHERE Account = @Account AND Passward = @Password
+	COMMIT
+GO
+
+CREATE PROC GetEmployeeByEmployeeID @EmployeeID NVARCHAR(10)
+AS 
+	BEGIN TRAN
+		SELECT * FROM EMPLOYEE WHERE EmployeeID = @EmployeeID
+	COMMIT
+GO
+
+
+CREATE PROC SaveEmployeeInformation @EmployeeID NVARCHAR(10), @FirstName NVARCHAR(20), @LastName NVARCHAR(20), 
+									@CellPhone NVARCHAR(10), @Address NVARCHAR(50), @Email NVARCHAR(50), 
+									@Password NVARCHAR(50), @Office NVARCHAR(30)
+AS 
+	BEGIN TRAN
+		UPDATE EMPLOYEE SET FirstName = @FirstName, LastName = @LastName, Cellphone = @CellPhone, 
+							EAddress = @Address, Email = @Email, Passward = @Password, Office = @Office
+						WHERE EmployeeID = @EmployeeID
 	COMMIT
 GO
 

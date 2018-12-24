@@ -17,6 +17,7 @@ namespace BookStore.Models
 
             if (authCustomer != null)
             {
+                authCustomer.Roles = "User";
                 FormsAuthenticationTicket ticket = new FormsAuthenticationTicket
                 (1,
                 authCustomer.CustomerID,
@@ -43,6 +44,7 @@ namespace BookStore.Models
             Employee authEmployee = employeeDAO.GetEmployeeByAuthentication(authMember);
             if (authEmployee != null)
             {
+                authEmployee.Roles = "Admin";
                 FormsAuthenticationTicket ticket = new FormsAuthenticationTicket
                 (1,
                 authEmployee.EmployeeID,
