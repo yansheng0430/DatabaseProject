@@ -1,0 +1,44 @@
+﻿@using BookStore.Models;
+@model List<BookStore.Models.Order>
+@{
+    ViewBag.Title = "OrderList";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+}
+<body>
+    <div class="container" style="border:2px #808080 groove;padding:50px">
+        <h2 style="text-align:center">Order List</h2>
+        <h2 style="text-align:center">@ViewBag.OrderID</h2>
+        <table class=" table">
+            <thead>
+                <tr>
+                    <td style="text-align:center">OrderID</td>
+                    <td style="text-align:center">CustomerID</td>
+                    <td style="text-align:center">CreditCard</td>
+                    <td style="text-align:center">PurchaseDate</td>
+                    <td style="text-align:center">Phone</td>
+                    <td style="text-align:center">Address</td>
+                    <td style="text-align:center">Email</td>
+                    <td style="text-align:center">FirstName</td>
+                    <td style="text-align:center">LastName</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Order order in Model)
+                {
+                <tr>
+                    <td style="text-align:center"><a href=@Url.Action("SingleOrder", "Employee", new { orderID = order.OrderID})>@order.OrderID</a></td>
+                    <td style="text-align:center">@order.CustomerID</td>
+                    <td style="text-align:center">@order.CreditCard</td>
+                    <td style="text-align:center">@order.PurchaseDate</td>
+                    <td style="text-align:center">@order.Phone</td>
+                    <td style="text-align:center">@order.Address</td>
+                    <td style="text-align:center">@order.Email</td>
+                    <td style="text-align:center">@order.FirstName</td>
+                    <td style="text-align:center">@order.LastName</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+

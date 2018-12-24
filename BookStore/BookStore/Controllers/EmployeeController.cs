@@ -155,6 +155,25 @@ namespace BookStore.Controllers
         }
 
         [Authorize(Roles = "Admin")]
+        // GET: Employee
+        public ActionResult OrderList()
+        {
+            OrdersDAO ordersDAO = new OrdersDAO();
+            List<Order> orderList = ordersDAO.GetAllOrders();
+            return View(orderList);
+        }
+
+        [Authorize(Roles = "Admin")]
+        // GET: Employee
+        public ActionResult SingleOrder(string orderID)
+        {
+            ContainsDAO containsDAO = new ContainsDAO();
+            List<Contain> containList = containsDAO.GetContainsByOrderID(orderID);
+            ViewBag.OrderID = orderID;
+            return View(containList);
+        }
+
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         // GET: Employee
         public ActionResult EmployeeInfo(Employee employee)

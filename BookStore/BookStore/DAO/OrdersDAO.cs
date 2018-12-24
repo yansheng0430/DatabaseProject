@@ -44,5 +44,41 @@ namespace BookStore.DAO
                 }
             }
         }
+
+        public List<Order> GetAllOrders()
+        {
+            List<Order> orderList = new List<Order>();
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = WebConfigurationManager.ConnectionStrings["BookStoreDB"].ConnectionString;
+                try
+                {
+                    connection.Open();
+                    string sqlString = "EXEC GetAllOrders";
+                    SqlCommand command = new SqlCommand(sqlString, connection);
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Order order = new Order();
+                        order.OrderID = reader.GetString(0);
+                        order.CustomerID = reader.GetString(1);
+                        order.CreditCard = reader.GetString(2);
+                        order.PurchaseDate = reader.GetDateTime(3);
+                        order.Phone = reader.GetString(4);
+                        order.Address = reader.GetString(5);
+                        order.Email = reader.GetString(6);
+                        order.FirstName = reader.GetString(7);
+                        order.LastName = reader.GetString(8);
+                        orderList.Add(order);
+                    }
+                    reader.Close();
+                    return orderList;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
     }
 }

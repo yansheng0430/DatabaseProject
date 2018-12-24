@@ -18,22 +18,25 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-6 col-md-4 order-2 order-md-1 ">
-                    <!--search-->
-                    <!--search-->
                     @using (Html.BeginForm("ProductSearchByKey", "Employee", FormMethod.Post))
                     {
-                        <div class=" col-md-5" style="text-align:end">
-                            <select id="selector" class="form-control" name="bookKeySelector">
-                                <option value="Book">Book </option>
-                                <option value="Author">Author </option>
-                                <option value="Publisher">Publisher </option>
-                                <option value="ISBN">ISBN</option>
-                            </select>
+                        <div class="row" style="text-align:end;padding:2px">
+                            <div class="col-md-4">
+                                <select id="selector" class="form-control" name="bookKeySelector">
+                                    <option value="Book">Book </option>
+                                    <option value="Author">Author </option>
+                                    <option value="Publisher">Publisher </option>
+                                    <option value="ISBN">ISBN</option>
+                                </select>
+                            </div>
                         </div>
-                        <br>
-                        <div class="col-md-10" style="text-align:initial">
-                            <input type="text" name="searchKeyText">
-                            <input type="submit" value="Search" class="btn btn-default" style="height:35px; width: 70px" />
+                        <div class="row " style="text-align:end">
+                            <div class="col-md-2">
+                                <input type="text" name="searchKeyText" style="width:150px">
+                            </div>
+                            <div class="col-md-2 offset-md-3">
+                                <input type="submit" value="Search" class="btn" style="font-size:12px" />
+                            </div>
                         </div>
                     }
                 </div>
@@ -69,6 +72,7 @@
             <ul class="site-menu js-clone-nav d-none d-md-block">
                 <li><a href=@Url.Action("ProductList", "Employee")>Product List</a></li>
                 <li> <a href=@Url.Action("ProductCreate", "Employee")>Create Product</a></li>
+                <li> <a href=@Url.Action("OrderList", "Employee")>Order List</a></li>
                 <li>
                     @if (!User.Identity.IsAuthenticated)
                     {

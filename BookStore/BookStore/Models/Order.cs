@@ -15,6 +15,8 @@ namespace BookStore.Models
         [Required]
         public string CreditCard { get; set; }
         [Required]
+        public DateTime PurchaseDate { get; set; }
+        [Required]
         public string Phone { get; set; }
         [Required]
         public string Address { get; set; }

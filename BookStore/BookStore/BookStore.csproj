@@ -150,6 +150,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="DAO\BooksDAO.cs" />
     <Compile Include="DAO\CategoriesDAO.cs" />
+    <Compile Include="DAO\ContainsDAO.cs" />
     <Compile Include="DAO\CustomerDAO.cs" />
     <Compile Include="DAO\EmployeeDAO.cs" />
     <Compile Include="DAO\InterestingDAO.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Models\BookManaged.cs" />
     <Compile Include="Models\BookShopped.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Contain.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Interesting.cs" />
@@ -199,6 +201,8 @@
     <Content Include="Views\Employee\EmployeeInfo.cshtml" />
     <Content Include="Views\Employee\ProductCreate.cshtml" />
     <Content Include="Views\Employee\ProductEdit.cshtml" />
+    <Content Include="Views\Employee\OrderList.cshtml" />
+    <Content Include="Views\Employee\SingleOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,5 +1,4 @@
 ﻿@using System.Web.Security
-
 <head>
     <title>Shoppers &mdash; Colorlib e-Commerce Template</title>
     <meta charset="utf-8">
@@ -14,30 +13,32 @@
     <link rel="stylesheet" href="~/Content/aos.css">
     <link rel="stylesheet" href="~/Content/style.css">
 </head>
-
 <header class="site-navbar" role="banner">
     <div class="site-navbar-top">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-6 col-md-4 order-2 order-md-1 ">
-                    <!--search-->
                     @using (Html.BeginForm("ShopSearchByKey", "Customer", FormMethod.Post))
                     {
-                        <div class=" col-md-5" style="text-align:end">
-                            <select id="selector" class="form-control" name="bookKeySelector">
-                                <option value="Book">Book </option>
-                                <option value="Author">Author </option>
-                                <option value="Publisher">Publisher </option>
-                                <option value="ISBN">ISBN</option>
-                            </select>
+                        <div class="row" style="text-align:end;padding:2px">
+                            <div class="col-md-4">
+                                <select id="selector" class="form-control" name="bookKeySelector">
+                                    <option value="Book">Book </option>
+                                    <option value="Author">Author </option>
+                                    <option value="Publisher">Publisher </option>
+                                    <option value="ISBN">ISBN</option>
+                                </select>
+                            </div>
                         </div>
-                        <br>
-                        <div class="col-md-10" style="text-align:initial">
-                            <input type="text" name="searchKeyText">
-                            <input type="submit" value="Search" class="btn btn-default" style="height:35px; width: 70px"/>
+                        <div class="row "style="text-align:end">
+                            <div class="col-md-2">
+                                <input type="text" name="searchKeyText" style="width:150px">
+                            </div>
+                            <div class="col-md-2 offset-md-3">
+                                <input type="submit" value="Search" class="btn" style="font-size:12px" />
+                            </div>
                         </div>
                     }
-
                 </div>
                 <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
                     <div class="site-logo">
@@ -71,7 +72,6 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -98,9 +98,7 @@
     </nav>
     <hr />
 </header>
-
 @RenderBody()
-
 <footer class="site-footer border-top">
     <div class="container">
         <div class="row">
@@ -132,7 +130,6 @@
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-
             </div>
             <div class="col-md-6 col-lg-3">
                 <div class="block-5 mb-5">
