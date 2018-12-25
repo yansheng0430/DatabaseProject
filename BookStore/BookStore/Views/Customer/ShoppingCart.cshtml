@@ -17,11 +17,14 @@
                 </div>
             </div>
         </div>
-        <div class="site-section">
-            <div class="container">
-                <div class="row mb-5">
-                    <form class="col-md-12" method="post">
+         @using (Html.BeginForm("ShoppingCartUpdate", "Customer", new { @class = "col-md-12" }))
+        {
+            <div class="site-section">
+                <div class="container">
+                    <div class="row mb-5">
+
                         <div class="site-blocks-table">
+
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -43,9 +46,10 @@
                                                 <!--商品圖片-->
                                                 <img src=@bookShopped.Cover alt="Image" class="img-fluid">
                                             </td>
+                                            @Html.Hidden("bookISBN", bookShopped.ISBN)
                                             <td class="product-name">
                                                 <h class="text-black" style="font-size:smaller">
-                                                    <a href=@Url.Action("ShopSingle", "Customer", new { ISBN = bookShopped.ISBN})>
+                                                    <a href=@Url.Action("ShopSingle", "Customer", new { ISBN = bookShopped.ISBN })>
                                                         @bookShopped.Name
                                                     </a>
                                                 </h>
@@ -54,48 +58,50 @@
                                             <td>
                                                 <!--加減商品數量-->
                                                 <div class="input-group mb-3 " style="max-width: 80px;">
-                                                    <input type="text" class="form-control text-center" value="1" placeholder="@bookShopped.Amount" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                                    <input type="text" class="form-control text-center" name="bookAmount" value="@bookShopped.Amount" aria-label="Example text with button addon" aria-describedby="button-addon1">
                                                 </div>
                                             </td>
                                             <td>@bookShopped.Subtotal</td>
-                                            <td><a href=@Url.Action("ShoppingCartDeleted", "Customer", new { customerID = bookShopped.CustomerID, ISBN = bookShopped.ISBN}) class="btn btn-primary btn-sm">X</a></td>
+                                            <td><a href=@Url.Action("ShoppingCartDeleted", "Customer", new { customerID = bookShopped.CustomerID, ISBN = bookShopped.ISBN }) class="btn btn-primary btn-sm">X</a></td>
                                         </tr>
-                                    }
+                                        }
                                 </tbody>
+
                             </table>
                         </div>
-                    </form>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="row mb-5">
-                            <div class="col-md-6 mb-3 mb-md-0">
-                               <a href=@Url.Action("ShoppingCart", "Customer", new { customerID = User.Identity.Name}) class="btn btn-primary btn-sm btn-block">UPDATE CART</a>
-                            </div>
-                            <div class="col-md-6">
-                                <a href=@Url.Action("Shop", "Customer") class="btn btn-outline-primary btn-sm btn-block">CONTINUE SHOPPING</a>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row mb-5">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <input type="submit" value="UPDATE CART" class="btn btn-primary btn-sm btn-block">
+                                </div>
+                                <div class="col-md-6">
+                                    <a href=@Url.Action("Shop", "Customer") class="btn btn-outline-primary btn-sm btn-block">CONTINUE SHOPPING</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 pl-5">
-                        <div class="row justify-content-end">
-                            <div class="col-md-7">
-                                <div class="row">
-                                    <div class="col-md-12 text-right border-bottom mb-5">
-                                        <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                        <div class="col-md-6 pl-5">
+                            <div class="row justify-content-end">
+                                <div class="col-md-7">
+                                    <div class="row">
+                                        <div class="col-md-12 text-right border-bottom mb-5">
+                                            <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-5">
-                                    <div class="col-md-6">
-                                        <span class="text-black">Total</span>
+                                    <div class="row mb-5">
+                                        <div class="col-md-6">
+                                            <span class="text-black">Total</span>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <strong class="text-black">@ViewBag.BooksTotal</strong>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6 text-right">
-                                        <strong class="text-black">@ViewBag.BooksTotal</strong>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <p ><a href=@Url.Action("Checkout", "Customer", new { customerID = User.Identity.Name }) class="buy-now btn btn-sm btn-primary">Proceed To Checkout</a></p>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p><a href=@Url.Action("Checkout", "Customer", new { customerID = User.Identity.Name }) class="buy-now btn btn-sm btn-primary">Proceed To Checkout</a></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +109,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        }
     </div>
 </body>
 </html>

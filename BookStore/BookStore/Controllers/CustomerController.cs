@@ -200,6 +200,37 @@ namespace BookStore.Controllers
         }
 
         [Authorize(Roles = "User")]
+        [HttpPost]
+        public ActionResult ShoppingCartUpdate(FormCollection form)
+        {
+            List<string> ISBNList = new List<string>();
+            List<string> AmountList = new List<string>();
+            foreach (string key in form.AllKeys)
+            {
+                if (key.Contains("bookAmount"))
+                {
+                    foreach (string amount in form.GetValues(key))
+                        AmountList.Add(amount);
+                }
+                else if (key.Contains("bookISBN"))
+                {
+                    foreach (string ISBN in form.GetValues(key))
+                        ISBNList.Add(ISBN);
+                }
+            }
+            for (int i = 0; i < ISBNList.Count; i++)
+            {
+                ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
+                ShoppingCartBook shoppingCartBook = new ShoppingCartBook();
+                shoppingCartBook.CustomerID = User.Identity.Name;
+                shoppingCartBook.Amount = int.Parse(AmountList[i]);
+                shoppingCartBook.ISBN = ISBNList[i];
+                shoppingCartDAO.ChangeShoppingCartBookAmount(shoppingCartBook);
+            }
+            return RedirectToAction("ShoppingCart", new { customerID = User.Identity.Name });
+        }
+
+        [Authorize(Roles = "User")]
         //Get:Checkout
         public ActionResult Checkout(string customerID)
         {

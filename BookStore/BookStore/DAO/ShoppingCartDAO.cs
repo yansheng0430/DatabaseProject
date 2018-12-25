@@ -54,7 +54,7 @@ namespace BookStore.DAO
                     command.Parameters.Add(new SqlParameter("@Amount", SqlDbType.Int));
                     command.Parameters["@CustomerID"].Value = shoppingBook.CustomerID;
                     command.Parameters["@ISBN"].Value = shoppingBook.ISBN;
-                    command.Parameters["Amount"].Value = shoppingBook.Amount;
+                    command.Parameters["@Amount"].Value = shoppingBook.Amount;
                     command.ExecuteNonQuery();
                     connection.Close();
                 }
