@@ -19,29 +19,28 @@
                 <div class="row mb-5">
                     <div class="col-md-9 order-2">
                         <div class="row mb-4">
-                            <!--產生12個商品清單-->
-                            <!--然後這些分頁我弄不起來現在頂多只能產生長到不行的商品列可能要想辦法解決-->
+                            <!--產生12個商品清單 by彥陞-->
                             @foreach (Book book in ViewBag.AllBooks)
                             {<!--一個商品格子-->
                                 <div class="col-sm-6 col-lg-4 col-mb-4" data-aos="fade-up">
                                     <div class="block-4 text-center border" style="height:400px">
                                         <figure class="block-4-image" style="padding:5px">
-                                            <!--要注意Book.Cover放入的圖片實際資料庫還沒有圖片-->
-                                            <!--圖片-->
+                                            <!--圖片 by彥陞-->
                                             <a href=@Url.Action("ShopSingle", "Customer", new { ISBN = book.ISBN })>
-                                                <img tyle="vertical-align:central" src="@book.Cover" alt="Product Image" class="img-fluid" />
+                                                <img tyle="vertical-align:central" src="@book.Cover" alt="Product Image" class="img-fluid" style="padding:5px;margin:auto;height:150px;height:250px" />
                                             </a>
                                         </figure>
                                         <div class="block-4-text p-4">
-                                            <h><a style="text-align:center;font-size:small"href=@Url.Action("ShopSingle", "Customer", new { ISBN = book.ISBN})>@book.Name</a></h>
+                                            <h><a style="text-align:center;font-size:small" href=@Url.Action("ShopSingle", "Customer", new { ISBN = book.ISBN})>@book.Name</a></h>
                                             <div class="text-primary font-weight-bold">$ @book.UnitPrice</div>
                                         </div>
                                     </div>
+                                    <br />
                                 </div>
                             }
                         </div>
                     </div>
-                    <!--左側category-->
+                    <!--左側category by彥陞-->
                     <div class="col-md-3 order-1 mb-5 mb-md-0 ">
                         <div class="border p-4 rounded mb-4">
                             <h3>Category</h3>

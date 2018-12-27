@@ -9,6 +9,8 @@ namespace BookStore.Models
 {
     public class AuthMember : IValidatableObject
     {
+        private string _identity;
+
         [Required]
         [StringLength(50)]
         public string Account { get; set; }
@@ -17,8 +19,22 @@ namespace BookStore.Models
         [StringLength(50)]
         public string Password { get; set; }
 
+        public string PublicKey { get; set; }
+
         [Required]
-        public string Identity { get; set; }
+        public string Identity
+        {
+            get
+            {
+                return _identity;
+            }
+            set
+            {
+                Account = MvcApplication._RSAHelper.Encrypt(MvcApplication._RSADataList.nowPublicKey, Account);
+                Password = MvcApplication._RSAHelper.Encrypt(MvcApplication._RSADataList.nowPublicKey, Password);
+                _identity = value;
+            }
+        }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

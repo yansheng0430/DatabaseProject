@@ -134,6 +134,7 @@
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.magnific-popup.min.js" />
+    <Content Include="Scripts\jsencrypt.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\owl.carousel.min.js" />
@@ -145,6 +146,8 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Authentication\FormValueCondition.cs" />
+    <Compile Include="Authentication\RSAHelper.cs" />
+    <Compile Include="Authentication\RSAViewModel.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
@@ -203,6 +206,7 @@
     <Content Include="Views\Employee\ProductEdit.cshtml" />
     <Content Include="Views\Employee\OrderList.cshtml" />
     <Content Include="Views\Employee\SingleOrder.cshtml" />
+    <Content Include="Views\Authentication\DemoRSAPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

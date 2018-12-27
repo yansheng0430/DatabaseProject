@@ -1,0 +1,71 @@
+﻿@model BookStore.Authentication.RSAViewModel
+
+<h1>Demo RSA Page</h1>
+<br />
+<hr />
+<hr />
+<h1>現在的驗證資料</h1>
+<hr />
+<hr />
+<br />
+
+<h3 style="color:#ff0000">
+    Now Account:
+    @if (@Model.AuthMemberString.Count >0)
+    {
+        @Model.AuthMemberString.Last().Item1
+
+    }
+    else
+    {
+        <p>尚未登入</p>
+    } 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Now Password:
+    @if (@Model.AuthMemberString.Count >0)
+    {
+        @Model.AuthMemberString.Last().Item2
+
+    }
+    else
+    {
+        <p>尚未登入</p>
+    }
+</h3>
+    
+<br>
+<h3>Now Public Key</h3>
+<p> @Model.nowPublicKey</p>
+<h3>Now Private Key</h3>
+<p> @Model.nowPrivateKey</p>
+
+<br>
+<h3>Now Decrypted Account</h3>
+<p> @Model.nowEncryptAccount</p>
+<h3>Now Decrypted Password</h3>
+<p> @Model.nowEncryptPassword</p>
+<br />
+<hr />
+<hr />
+<h1>下方為過去產生的驗證資料</h1>
+<hr />
+<hr />
+<br />
+@if (Model.PublicKeysList.Count - 2 > 0)
+{
+    for (int i = Model.PublicKeysList.Count - 2; i >= 0; i--)
+    {
+        <h1>序號<@i></h1>
+        <h3 style="color:#ff0000">Account: @Model.AuthMemberString.Last().Item1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Password: @Model.AuthMemberString.Last().Item2</h3>
+        <br>
+        <h3>Public Key</h3>
+        <p> @Model.PublicKeysList[i]</p>
+        <h3>Private Key</h3>
+        <p> @Model.PrivateKeysList[i]</p>
+        <br />
+        <hr />
+        <hr />
+    }
+}
+
+

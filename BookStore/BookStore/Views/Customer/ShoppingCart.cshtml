@@ -23,7 +23,7 @@
                 <div class="container">
                     <div class="row mb-5">
 
-                        <div class="site-blocks-table">
+                        <div class="site-blocks-table col-12" style="margin:auto">
 
                             <table class="table table-bordered">
                                 <thead>
@@ -40,11 +40,11 @@
                                 <tbody>
                                     @foreach (BookShopped bookShopped in Model)
                                     {
-                                        <!--載入商品資訊-->
+                                        <!--載入商品資訊 by彥陞-->
                                         <tr>
                                             <td class="product-thumbnail">
-                                                <!--商品圖片-->
-                                                <img src=@bookShopped.Cover alt="Image" class="img-fluid">
+                                                <!--商品圖片 by彥陞-->
+                                                <img src=@bookShopped.Cover alt="Image" class="img-fluid" style="width:80px;height:100px">
                                             </td>
                                             @Html.Hidden("bookISBN", bookShopped.ISBN)
                                             <td class="product-name">
@@ -56,15 +56,15 @@
                                             </td>
                                             <td>@bookShopped.UnitPrice</td>
                                             <td>
-                                                <!--加減商品數量-->
-                                                <div class="input-group mb-3 " style="max-width: 80px;">
+                                                <!--加減商品數量 by彥陞-->
+                                                <div class="input-group mb-3" style="max-width:80px;margin:auto">
                                                     <input type="text" class="form-control text-center" name="bookAmount" value="@bookShopped.Amount" aria-label="Example text with button addon" aria-describedby="button-addon1">
                                                 </div>
                                             </td>
                                             <td>@bookShopped.Subtotal</td>
                                             <td><a href=@Url.Action("ShoppingCartDeleted", "Customer", new { customerID = bookShopped.CustomerID, ISBN = bookShopped.ISBN }) class="btn btn-primary btn-sm">X</a></td>
                                         </tr>
-                                        }
+                                    }
                                 </tbody>
 
                             </table>
@@ -99,8 +99,8 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <p><a href=@Url.Action("Checkout", "Customer", new { customerID = User.Identity.Name }) class="buy-now btn btn-sm btn-primary">Proceed To Checkout</a></p>
+                                        <div class="col-md-11 offset-md-1">
+                                            <p><a href=@Url.Action("Checkout", "Customer", new { customerID = User.Identity.Name }) class="buy-now btn btn-sm btn-primary" style="margin:auto">Proceed To Checkout</a></p>
                                         </div>
                                     </div>
                                 </div>

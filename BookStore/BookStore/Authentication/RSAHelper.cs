@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Security.Cryptography;
 using System.Text;
-namespace BookStore.AuthenticationHelper
+namespace BookStore.Authentication
 {
     public class RSAHelper
     {
